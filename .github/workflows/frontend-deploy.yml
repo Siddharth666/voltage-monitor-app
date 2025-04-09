@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'front_end_voltage/**'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
