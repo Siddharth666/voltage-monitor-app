@@ -1,0 +1,6 @@
+@VoltageData_HostAddress = http://localhost:5205
+
+GET {{VoltageData_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

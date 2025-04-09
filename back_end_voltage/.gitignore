@@ -1,0 +1,11 @@
+# .NET Web API
+bin/
+obj/
+.vscode/
+*.user
+*.suo
+*.dbmdl
+*.log
+.env
+.vs/
+appsettings.Development.json

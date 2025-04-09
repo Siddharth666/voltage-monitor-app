@@ -1,0 +1,6 @@
+# Global files & folders to ignore
+.DS_Store
+.env
+*.log
+.vscode/
+.idea/
