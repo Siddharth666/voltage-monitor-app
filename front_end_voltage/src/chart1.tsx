@@ -1,10 +1,6 @@
 import React, { useEffect, useState, useRef  } from "react";
 import ReactECharts from "echarts-for-react";
 
-interface VoltageData {
-  label: string;
-  voltageLevel: number;
-}
 
 const Chart1: React.FC = () => {
   const [labels, setLabels] = useState<string[]>([]);
