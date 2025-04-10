@@ -21,13 +21,13 @@ jobs:
           dotnet-version: '8.0.x'  # or '7.0.x' if you're using .NET 7
 
       - name: Restore dependencies
-        run: dotnet restore back_end_voltage/back_end_voltage.csproj
+        run: dotnet restore back_end_voltage/VoltageData.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build back_end_voltage/VoltageData.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish back_end_voltage/back_end_voltage.csproj --configuration Release --output ./publish
+        run: dotnet publish back_end_voltage/VoltageData.csproj --configuration Release --output ./publish
 
       - name: Azure Login
         uses: azure/login@v1
