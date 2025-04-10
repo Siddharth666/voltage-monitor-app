@@ -1,0 +1,42 @@
+name: Deploy .NET API to Azure
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'back_end_voltage/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'  # or '7.0.x' if you're using .NET 7
+
+      - name: Restore dependencies
+        run: dotnet restore back_end_voltage/back_end_voltage.csproj
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish back_end_voltage/back_end_voltage.csproj --configuration Release --output ./publish
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_BACKEND }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: VoltageData20250309115248
+          slot-name: production
+          package: ./publish
