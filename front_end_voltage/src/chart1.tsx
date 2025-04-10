@@ -120,7 +120,7 @@ const Chart1: React.FC = () => {
     <div>
       <ReactECharts ref={chartRef} option={options} />
       <button onClick={saveChartAsImage}>Save Chart As Image</button> <br />
-      <button onClick={saveChartInBlob} disabled={true}>Save Chart to Azure Blob</button>
+      <button onClick={saveChartInBlob} disabled={false}>Save Chart to Azure Blob</button>
     </div>
   ) ;
 };
