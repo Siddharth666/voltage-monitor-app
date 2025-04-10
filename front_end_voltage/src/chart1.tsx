@@ -103,8 +103,8 @@ const Chart1: React.FC = () => {
     formData.append("file", file);
   
     try {
-      const AZURE_FUNC_KEY = process.env.REACT_APP_FUNC_KEY;
-      const response = await fetch(`https://functionapp120250324221850.azurewebsites.net/api/upload?code=${AZURE_FUNC_KEY}`, {
+      const REACT_APP_FUNC_KEY = process.env.REACT_APP_FUNC_KEY;
+      const response = await fetch(`https://functionapp120250324221850.azurewebsites.net/api/upload?code=${REACT_APP_FUNC_KEY}`, {
         method: "POST",
         body: formData
       });
