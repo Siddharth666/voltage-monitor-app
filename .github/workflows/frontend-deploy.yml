@@ -28,6 +28,8 @@ jobs:
       - name: Build project
         working-directory: front_end_voltage
         run: npm run build
+        env:
+            REACT_APP_FUNCTION_KEY: ${{ secrets.REACT_APP_FUNCTION_KEY }}
 
       - name: Azure Login
         uses: azure/login@v1
