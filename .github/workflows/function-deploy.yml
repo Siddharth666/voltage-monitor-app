@@ -1,0 +1,42 @@
+name: Deploy Azure Function
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'azure_function_voltage/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore azure_function_voltage/FunctionApp1.csproj
+
+      - name: Build
+        run: dotnet build azure_function_voltage/FunctionApp1.csproj --configuration Release --no-restore
+
+      - name: Publish
+        run: dotnet publish azure_function_voltage/FunctionApp1.csproj --configuration Release --output ./publish
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_FUNCTION_CREDENTIALS }}
+
+      - name: Deploy to Azure Function App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: FunctionApp120250324221850
+          slot-name: production
+          package: ./publish
